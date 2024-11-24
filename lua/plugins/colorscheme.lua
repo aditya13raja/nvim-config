@@ -1,9 +1,9 @@
 return {
-    "olimorris/onedarkpro.nvim", priority = 1000,
+    --"olimorris/onedarkpro.nvim", priority = 1000,
+    "folke/tokyonight.nvim", priority = 1000, lazy = false,
     config = function()
-        vim.cmd.colorscheme "onedark"
-        --        vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-        --        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+        vim.cmd.colorscheme "tokyonight"
+
         -- Set transparent background for main editor and common elements
         vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
         vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })

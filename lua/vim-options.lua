@@ -22,3 +22,14 @@ vim.opt.updatetime = 50
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+vim.keymap.set("n", "<leader>f", ":Ex<CR>")
+
+-- Use <C-c> to copy to the Windows system clipboard in visual mode
+vim.keymap.set('v', '<C-c>', function()
+    -- Yank the selected text into the unnamed register
+    vim.cmd('normal! "+y')
+    -- Get the yanked text from the clipboard register
+    local selected_text = vim.fn.getreg("+")
+    -- Send the yanked text to the Windows clipboard using clip.exe
+    vim.fn.system('clip.exe', selected_text)
+end, { noremap = true, silent = true })
