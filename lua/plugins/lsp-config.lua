@@ -49,7 +49,6 @@ return {
         "lua_ls",
         "jsonls",
         "html",
-        "tailwindcss",
         "bashls",
         "gopls",
       },
