@@ -24,6 +24,13 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 vim.keymap.set("n", "<leader>f", ":Ex<CR>")
 
+-- keep the cursor to center while navigating
+vim.keymap.set("n", "<C-d>", '<C-d>zz')
+vim.keymap.set("n", "<C-u>", '<C-u>zz')
+
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
 -- Use <C-c> to copy to the Windows system clipboard in visual mode
 vim.keymap.set('v', '<C-c>', function()
     -- Yank the selected text into the unnamed register

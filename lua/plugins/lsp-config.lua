@@ -61,6 +61,14 @@ return {
       },
     })
 
+    ------------------------------------------------
+    -- trying for typescript
+    require("lspconfig").eslint.setup({
+            { "vscode-eslint-language-server", "--stdio" },
+            { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue", "svelte", "astro" },
+        })
+    -------------------------------------------------
+
     local cmp_action = require("lsp-zero").cmp_action()
     local cmp = require("cmp")
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
