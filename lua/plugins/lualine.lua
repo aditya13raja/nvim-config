@@ -4,7 +4,7 @@ return {
         require('lualine').setup({
             options = {
                 iconss_enabled = true,
-                theme = 'palenight',
+                theme = 'jellybeans',
                 component_separators = { left = '', right = ''},
                 --section_separators = { left = '', right = ''},
                 section_separators = { left = '', right = ''},
