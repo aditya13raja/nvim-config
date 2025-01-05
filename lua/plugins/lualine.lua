@@ -4,9 +4,9 @@ return {
         require('lualine').setup({
             options = {
                 iconss_enabled = true,
-                theme = 'jellybeans',
+                theme = 'codedark',
                 component_separators = { left = '', right = ''},
-                --section_separators = { left = '', right = ''},
+                -- section_separators = { left = '', right = ''},
                 section_separators = { left = '', right = ''},
                 disabled_filetypes = {
                     statusline = {},
@@ -20,9 +20,22 @@ return {
                 }
             },
             sections = {
-                lualine_c = {},
+                lualine_a = {
+                    {
+                        'vim.fn.getcwd()',
+                        fmt = function(str)
+                            -- Get only the last folder name
+                            return str:match("([^/]+)$")
+                        end,
+                    }
+                },
                 lualine_b = {'branch', 'diff', 'diagnostics'},
-                lualine_a = {'filename'},
+                lualine_c = {
+                    {
+                        'filename',
+                        path=1
+                    },
+                },
                 lualine_x = { 'filetype'},
                 lualine_y = {'progress'},
                 lualine_z = {'location'}
