@@ -34,3 +34,14 @@ vim.keymap.set('v', '<C-c>', '"+y', { noremap = true, silent = true })
 
 -- Keymap to select all
 vim.keymap.set('n', '<C-a>', 'ggVG', { noremap = true, silent = true })
+
+-- Remap for moving in splits
+vim.keymap.set('n', '<C-h>', '<C-w>h')
+vim.keymap.set('n', '<C-j>', '<C-w>j')
+vim.keymap.set('n', '<C-k>', '<C-w>k')
+vim.keymap.set('n', '<C-l>', '<C-w>l')
+
+
+-- Create vertical split
+-- Instead of <C-/>, I need to write '_' instead of '/'.
+vim.keymap.set('n', '<C-_>', ':vs<CR>')

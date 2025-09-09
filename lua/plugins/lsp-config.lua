@@ -11,7 +11,7 @@ return {
       "pmizio/typescript-tools.nvim",
       dependencies = { "nvim-lua/plenary.nvim" }
     },
-    -- Rest of your existing dependencies
+    -- Completion plugins
     { "hrsh7th/nvim-cmp" },
     { "hrsh7th/cmp-nvim-lsp" },
     { "L3MON4D3/LuaSnip" },
@@ -23,8 +23,6 @@ return {
   },
   config = function()
     local lsp = require("lsp-zero")
-    
-    -- Your existing lsp.on_attach function...
 
     require("mason").setup({})
     require("mason-lspconfig").setup({
@@ -70,7 +68,21 @@ return {
       end,
       filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue" },
     })
-    -------------------------------------------------
+
+    -- Diagnostic configuration (added for full message)
+    vim.diagnostic.config({
+      virtual_text = {
+        prefix = "●",
+        source = "always",
+        format = function(diagnostic)
+          return string.format("%s: %s", diagnostic.source, diagnostic.message)
+        end,
+      },
+      signs = true,
+      underline = true,
+      update_in_insert = false,
+      severity_sort = true,
+    })
 
     local cmp_action = require("lsp-zero").cmp_action()
     local cmp = require("cmp")
@@ -78,7 +90,7 @@ return {
 
     require("luasnip.loaders.from_vscode").lazy_load()
 
-    -- `/` cmdline setup.
+    -- `/` cmdline setup
     cmp.setup.cmdline("/", {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {
@@ -86,7 +98,7 @@ return {
       },
     })
 
-    -- `:` cmdline setup.
+    -- `:` cmdline setup
     cmp.setup.cmdline(":", {
       mapping = cmp.mapping.preset.cmdline(),
       sources = cmp.config.sources({
@@ -120,9 +132,10 @@ return {
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-f>"] = cmp_action.luasnip_jump_forward(),
         ["<C-b>"] = cmp_action.luasnip_jump_backward(),
-        ["<Tab>"] = cmp_action.luasnip_supertab(),
-        ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
+        ["<S-Tab>"] = cmp_action.luasnip_supertab(),
+--        ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
       }),
     })
   end,
 }
+

@@ -4,10 +4,10 @@ return {
         require('lualine').setup({
             options = {
                 iconss_enabled = true,
-                theme = 'codedark',
+                theme = 'material',
                 component_separators = { left = '', right = ''},
-                -- section_separators = { left = '', right = ''},
-                section_separators = { left = '', right = ''},
+                section_separators = { left = '', right = ''},
+                -- section_separators = { left = '', right = ''},
                 disabled_filetypes = {
                     statusline = {},
                     winbar = {},

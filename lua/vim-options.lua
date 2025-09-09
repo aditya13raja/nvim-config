@@ -4,6 +4,12 @@ vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.cmd("set relativenumber")
 vim.cmd("set number")
+vim.cmd("set nowrap")
+-- vim.cmd("set linebreak")
+
+-- Format go files automatically after save
+vim.cmd [[autocmd BufWritePre *.go :silent! lua vim.lsp.buf.format()]]
+----------------------------------------------------------------------
 
 vim.g.mapleader = " "
 vim.opt.guicursor = {
