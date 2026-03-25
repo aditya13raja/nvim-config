@@ -4,7 +4,7 @@ return {
         require('lualine').setup({
             options = {
                 iconss_enabled = true,
-                theme = 'material',
+                theme = 'catppuccin',
                 component_separators = { left = '', right = ''},
                 section_separators = { left = '', right = ''},
                 -- section_separators = { left = '', right = ''},

@@ -27,12 +27,13 @@ return {
     require("mason").setup({})
     require("mason-lspconfig").setup({
       ensure_installed = {
-        "jdtls",
+        --"jdtls",
         "lua_ls",
         "jsonls",
         "html",
         "bashls",
         "gopls",
+        "eslint",
       },
       handlers = {
         lsp.default_setup,
@@ -59,15 +60,41 @@ return {
     })
 
     -- ESLint setup
-    require("lspconfig").eslint.setup({
-      on_attach = function(_client, bufnr)
+    -- require("lspconfig").eslint.setup({
+    --   on_attach = function(_client, bufnr)
+    --     vim.api.nvim_create_autocmd("BufWritePre", {
+    --       buffer = bufnr,
+    --       command = "EslintFixAll",
+    --     })
+    --   end,
+    --   filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue" },
+    -- })
+    -- New Way
+    -- ESLint setup
+    vim.lsp.config("eslint", {
+      on_attach = function(client, bufnr)
         vim.api.nvim_create_autocmd("BufWritePre", {
           buffer = bufnr,
-          command = "EslintFixAll",
+          -- command = "EslintFixAll",
+          callback = function()
+              -- Replicates EslintFixAll natively by sending the workspace command directly
+              client.request_sync("workspace/executeCommand", {
+                command = "eslint.applyAllFixes",
+                arguments = {
+                  {
+                    uri = vim.uri_from_bufnr(bufnr),
+                    version = vim.lsp.util.buf_versions[bufnr] or 0,
+                  },
+                },
+              }, 1000, bufnr)
+            end,
         })
       end,
       filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue" },
     })
+
+    -- Activate the server
+    vim.lsp.enable("eslint")
 
     -- Diagnostic configuration (added for full message)
     vim.diagnostic.config({
@@ -132,10 +159,10 @@ return {
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-f>"] = cmp_action.luasnip_jump_forward(),
         ["<C-b>"] = cmp_action.luasnip_jump_backward(),
-        ["<S-Tab>"] = cmp_action.luasnip_supertab(),
+        ["<Tab>"] = cmp_action.luasnip_supertab(),
+        -- ["<S-Tab>"] = cmp_action.luasnip_supertab(),
 --        ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
       }),
     })
   end,
 }
-

@@ -21,4 +21,4 @@ require("vim-options")
 require("lazy").setup("plugins")
 
 -- gemini cli options
-require("gemini")
+-- require("gemini")

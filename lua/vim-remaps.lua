@@ -15,22 +15,9 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- delete things over without losing the paste value/code
 vim.keymap.set("n", "<leader>p", "\"_dP")
 
--- copy past functionality
-vim.g.clipboard = {
-  name = 'WSLClipboard',
-  copy = {
-    ["+"] = 'clip.exe',
-    ["*"] = 'clip.exe',
-  },
-  paste = {
-    ["+"] = 'powershell.exe -command "Get-Clipboard"',
-    ["*"] = 'powershell.exe -command "Get-Clipboard"',
-  },
-  cache_enabled = 1,
-}
-
--- Keymap Ctrl+C to copy selected text to clipboard in Visual mode
-vim.keymap.set('v', '<C-c>', '"+y', { noremap = true, silent = true })
+-- Yank to system clipboard
+vim.keymap.set('n', 'Y', '"+Y', { noremap = true, desc = "Yank line to system clipboard" })
+vim.keymap.set('v', 'Y', '"+y', { noremap = true, desc = "Yank selection to system clipboard" })
 
 -- Keymap to select all
 vim.keymap.set('n', '<C-a>', 'ggVG', { noremap = true, silent = true })

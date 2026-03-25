@@ -4,7 +4,9 @@ vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.cmd("set relativenumber")
 vim.cmd("set number")
-vim.cmd("set nowrap")
+vim.cmd("set wrap")
+vim.cmd("set linebreak")
+vim.cmd("set nolist")
 -- vim.cmd("set linebreak")
 
 -- Format go files automatically after save
