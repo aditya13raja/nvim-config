@@ -27,7 +27,7 @@ return {
     require("mason").setup({})
     require("mason-lspconfig").setup({
       ensure_installed = {
-        --"jdtls",
+        -- "jdtls",
         "lua_ls",
         "jsonls",
         "html",
@@ -58,6 +58,17 @@ return {
         complete_function_calls = true,
       }
     })
+
+    -- Java setup
+    vim.lsp.config('jdtls', {
+      cmd = { vim.fn.expand('~/.local/share/jdtls/bin/jdtls') },
+      root_dir = function(bufnr, on_dir)
+        on_dir(vim.fs.root(bufnr, { 'pom.xml', 'build.gradle', '.git', 'mvnw' }))
+      end,
+    })
+    
+    -- Tell Neovim to enable the server we just configured
+    vim.lsp.enable('jdtls')
 
     -- ESLint setup
     -- require("lspconfig").eslint.setup({

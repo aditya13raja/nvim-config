@@ -17,7 +17,7 @@ return {
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     opts = {
-        ensure_installed = { "lua", "javascript", "html", "go", "css", "typescript", "java" },
+        ensure_installed = { "lua", "javascript", "html", "go", "css", "typescript", "java", "tsx", "jsx" },
         auto_install = true,
         highlight = { enable = true },
         indent = { enable = true },
